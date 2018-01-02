@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let round of game?.rounds">
+    <span *ngFor="let slot of round.slots">{{ slot }} </span>
+    <div>Rnrp: </div>{{ round.rnrp }} 
+    <div>Rnwp: </div>{{ round.rnwp }}
+  </li>
+</ul>
+
+<span *ngFor="let slot of game?.answer.slots">{{ slot }}</span>
