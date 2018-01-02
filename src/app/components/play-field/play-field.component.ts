@@ -10,10 +10,23 @@ import { Game } from '../../models/game.model';
 export class PlayFieldComponent implements OnInit {
 
   public game: Game;
+  public guess = [];
+  public error: string;
 
   constructor(private mastermindService: MastermindService) { }
 
   ngOnInit() {
     this.game = this.mastermindService.newGame();
+    this.guess = new Array(this.game.numSlots);
+  }
+
+  public makeGuess() {
+    console.log(this.guess);
+    if (this.guess.indexOf('0') < 0) {
+      this.mastermindService.submitGuess(this.guess);
+      this.error = null;
+    } else {
+      this.error = "Unexpected number in the baggi .. number area!"
+    }
   }
 }

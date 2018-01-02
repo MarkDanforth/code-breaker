@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { PlayFieldComponent } from './components/play-field/play-field.component';
 
 import { MastermindService } from './services/mastermind.service';
+import { FruitPickerComponent } from './shared/control/fruit-picker/fruit-picker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlayFieldComponent
+    PlayFieldComponent,
+    FruitPickerComponent
   ],
   imports: [
     BrowserModule,

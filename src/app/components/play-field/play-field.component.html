@@ -1,3 +1,44 @@
+<div>
+  <select [(ngModel)]="guess[0]">
+    <option value="0">*</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+  </select>
+  <select [(ngModel)]="guess[1]">
+    <option value="0">*</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+  </select>
+  <select [(ngModel)]="guess[2]">
+    <option value="0">*</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+  </select>
+  <select [(ngModel)]="guess[3]">
+    <option value="0">*</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+  </select>
+  <button (click)="makeGuess()">Go</button>
+  <p *ngIf="error">{{ error }}</p>
+</div>
+
 <ul>
   <li *ngFor="let round of game?.rounds">
     <span *ngFor="let slot of round.slots">{{ slot }} </span>
@@ -6,4 +47,5 @@
   </li>
 </ul>
 
-<span *ngFor="let slot of game?.answer.slots">{{ slot }}</span>
+<span *ngFor="let slot of guess">{{ slot }} </span><br />
+<!--<span *ngFor="let slot of game?.answer.slots">{{ slot }}</span>-->

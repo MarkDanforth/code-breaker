@@ -11,17 +11,18 @@ export class MastermindService {
   constructor() { }
 
   newGame(): Game {
-    const answer = new Round({ slots: [Math.floor((Math.random() * 6) + 1),
-      Math.floor((Math.random() * 6) + 1),
-      Math.floor((Math.random() * 6) + 1),
-      Math.floor((Math.random() * 6) + 1)] });
+    var i: number;
+    let nextGame = new Game({});
 
-    this.game = new Game({ answer: answer });
+    const answer = []
+    
+    for (i = 0; i < nextGame.numSlots; i++) {
+      answer.push(Math.floor((Math.random() * nextGame.maxValues) + 1));
+    }
 
-    this.submitGuess([ 1, 2, 3, 4 ]);
-    this.submitGuess([ 2, 3, 4, 1 ]);
-    this.submitGuess([ 3, 4, 1, 2 ]);
+    nextGame.answer = new Round({ slots: answer});
 
+    this.game = nextGame;
     return this.game;
   }
 
@@ -44,12 +45,8 @@ export class MastermindService {
     // check for right number wrong place
     round.slots.forEach((guessElement, guessIndex) => {
       if (rowStatus[guessIndex] === 0 || rowStatus[guessIndex] === 2) {
-        console.log('GIdx: ' + guessIndex + ', GStatus: ' + rowStatus[guessIndex] + ', GVal: ' + guessElement);
         this.game.answer.slots.forEach((answerElement, answerIndex) => {
-          console.log('AIdx: ' + answerIndex + ', AStatus: ' + rowStatus[answerIndex] + ', AVal: ' + answerElement);
-
-          if (rowStatus[answerIndex] < 2 && guessElement === answerElement) {
-            console.log('Match!')
+          if (rowStatus[answerIndex] < 2 && guessElement == answerElement) {
             round.rnwp += 1;
             rowStatus[guessIndex] += 1;
             rowStatus[answerIndex] += 2;

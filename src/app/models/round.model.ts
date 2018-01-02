@@ -6,7 +6,7 @@ export class Round {
 
     constructor(input: Object) {
         this.order = input['order'];
-        this.slots = input['slots'];
+        this.slots = (input['slots']) ? (input['slots'] as number[]).map(val => val) : [];;
         this.rnrp = 0;
         this.rnwp = 0;
     }
