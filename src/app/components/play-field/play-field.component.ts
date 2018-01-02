@@ -17,7 +17,7 @@ export class PlayFieldComponent implements OnInit {
 
   ngOnInit() {
     this.game = this.mastermindService.newGame();
-    this.guess = new Array(this.game.numSlots);
+    this.guess = new Array(this.game.numSlots).fill(0);
   }
 
   public makeGuess() {

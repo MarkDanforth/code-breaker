@@ -1,0 +1,38 @@
+:host {
+    display: inline-block;
+}
+
+.fruit {
+    display: block;
+    width: 64px;
+    height: 64px;
+    text-align: center;
+    background-color: #f6ffff;
+    margin: 4px;
+    border-radius: 4px;
+}
+
+.select-a-fruit {
+    position: relative;
+}
+
+ul {
+    width: 64px;
+    padding: 0;
+    position: absolute;
+}
+
+li {
+    display: block;
+    width: 64px;
+    height: 64px;
+    text-align: center;
+    background-color: #f6ffff;
+    margin: 4px;
+    border-radius: 4px;
+}
+
+    li, .fruit i {
+        line-height: 64px;
+        font-size: 32px;
+    }

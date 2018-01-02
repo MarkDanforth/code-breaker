@@ -1,14 +1,14 @@
-<div class="picked-fruit">
-  1
+<div class="picked-fruit fruit" (click)="showPicker()">
+  <i class="fa {{ glyphs[selectedValue] }}" aria-hidden="true"></i>
 </div>
 
-<div class="select-a-fruit">
+<div class="select-a-fruit" *ngIf="pickerIsVisible">
   <ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-    <li>6</li>
+    <li class="fruit" (click)="pickFruit(1)"><i class="fa {{ glyphs[1] }}" aria-hidden="true"></i></li>
+    <li class="fruit" (click)="pickFruit(2)"><i class="fa {{ glyphs[2] }}" aria-hidden="true"></i></li>
+    <li class="fruit" (click)="pickFruit(3)"><i class="fa {{ glyphs[3] }}" aria-hidden="true"></i></li>
+    <li class="fruit" (click)="pickFruit(4)"><i class="fa {{ glyphs[4] }}" aria-hidden="true"></i></li>
+    <li class="fruit" (click)="pickFruit(5)"><i class="fa {{ glyphs[5] }}" aria-hidden="true"></i></li>
+    <li class="fruit" (click)="pickFruit(6)"><i class="fa {{ glyphs[6] }}" aria-hidden="true"></i></li>
   </ul>
 </div>
