@@ -11,16 +11,12 @@ export class MastermindService {
   constructor() { }
 
   newGame(): Game {
-    var i: number;
-    let nextGame = new Game({});
+    let i: number;
+    const nextGame = new Game({ answer: new Round({})});
 
-    const answer = []
-    
     for (i = 0; i < nextGame.numSlots; i++) {
-      answer.push(Math.floor((Math.random() * nextGame.maxValues) + 1));
+      nextGame.answer.slots.push(Math.floor((Math.random() * nextGame.maxValues) + 1));
     }
-
-    nextGame.answer = new Round({ slots: answer});
 
     this.game = nextGame;
     return this.game;

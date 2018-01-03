@@ -18,6 +18,7 @@ export class PlayFieldComponent implements OnInit {
   ngOnInit() {
     this.game = this.mastermindService.newGame();
     this.guess = new Array(this.game.numSlots).fill(0);
+    console.log(this.game.answer.slots);
   }
 
   public makeGuess() {
@@ -26,7 +27,7 @@ export class PlayFieldComponent implements OnInit {
       this.mastermindService.submitGuess(this.guess);
       this.error = null;
     } else {
-      this.error = "Unexpected number in the baggi .. number area!"
+      this.error = 'Unexpected item in the baggi .. item area!';
     }
   }
 }
