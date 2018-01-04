@@ -10,7 +10,8 @@
 
 <ul>
   <li *ngFor="let round of game?.rounds">
-    <span *ngFor="let slot of round.slots">{{ slot }} </span>
+    <!--<span *ngFor="let slot of round.slots">{{ slot }} </span>-->
+    <app-old-fruit [fruits]="round.slots"></app-old-fruit>
     <div>Rnrp: </div>{{ round.rnrp }} 
     <div>Rnwp: </div>{{ round.rnwp }}
   </li>

@@ -1,15 +1,16 @@
-pipeline {
-    agent {
-        docker {
-            image 'node:6-alpine' 
-            args '-p 3000:3000' 
-        }
+node {
+    stage('Prepare') {
+        git 'https://github.com/MarkDanforth/code-breaker.git'
+        sh 'npm install'
     }
-    stages {
-        stage('Build') { 
-            steps {
-                sh 'npm install' 
-            }
+    stage('Build') {        
+        sh './node_modules/@angular/cli/bin/ng build --prod --aot=false'
+        sh 'git rev-parse HEAD | cut -c1-4 > ./dist/VERSION.txt'
+    }
+    stage('Deploy') {
+        sshagent(['frank']) {
+        sh 'ssh mark@cursedbanana.westeurope.cloudapp.azure.com rm -rf /home/mark/dist/'
+        sh 'scp -r dist mark@cursedbanana.westeurope.cloudapp.azure.com:/home/mark/dist/'
         }
     }
 }

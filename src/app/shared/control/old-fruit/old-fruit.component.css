@@ -1,0 +1,19 @@
+:host {
+    display: flex;
+    flex-direction: row;
+}
+
+.fruit {
+    display: block;
+    width: 64px;
+    height: 64px;
+    text-align: center;
+    background-color: #f6ffff;
+    margin: 4px;
+    border-radius: 4px;
+}
+
+.fruit i {
+    line-height: 64px;
+    font-size: 32px;
+}
