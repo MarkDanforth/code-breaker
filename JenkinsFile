@@ -9,8 +9,8 @@ node {
     }
     stage('Deploy') {
         sshagent(['frank']) {
-        sh 'ssh mark@cursedbanana.westeurope.cloudapp.azure.com rm -rf /home/mark/dist/'
-        sh 'scp -r dist mark@cursedbanana.westeurope.cloudapp.azure.com:/home/mark/dist/'
+        sh 'ssh mark@cursedbanana.westeurope.cloudapp.azure.com rm -rf /home/mark/dist/*'
+        sh 'scp -r dist mark@cursedbanana.westeurope.cloudapp.azure.com:/home/mark/'
         }
     }
 }
