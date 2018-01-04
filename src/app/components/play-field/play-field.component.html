@@ -4,7 +4,7 @@
   <app-fruit-picker [(selectedValue)]="guess[2]"></app-fruit-picker>
   <app-fruit-picker [(selectedValue)]="guess[3]"></app-fruit-picker>
 
-  <button (click)="makeGuess()">Go</button>
+  <button (click)="makeGuess()"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
   <p *ngIf="error">{{ error }}</p>
 </div>
 
