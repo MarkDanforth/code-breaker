@@ -1,16 +1,27 @@
 node {
+    def app
+
     stage('Prepare') {
         git 'https://github.com/MarkDanforth/code-breaker.git'
         sh 'npm install'
     }
-    stage('Build') {        
-        sh './node_modules/@angular/cli/bin/ng build --prod --aot=false'
-        sh 'git rev-parse HEAD | cut -c1-4 > ./dist/VERSION.txt'
+    stage('Build image') {        
+        app = docker.build("code-breaker")
     }
-    stage('Deploy') {
+        stage('Push image') {
+        /* Finally, we'll push the image with two tags:
+         * First, the incremental build number from Jenkins
+         * Second, the 'latest' tag.
+         * Pushing multiple tags is cheap, as all the layers are reused. */
+        docker.withRegistry('https://clocksondocker.azurecr.io', 'clocksondocker-credential') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
+        }
+    }
+    /*stage('Deploy') {
         sshagent(['frank']) {
         sh 'ssh mark@cursedbanana.westeurope.cloudapp.azure.com rm -rf /home/mark/dist/*'
         sh 'scp -r dist mark@cursedbanana.westeurope.cloudapp.azure.com:/home/mark/'
         }
-    }
+    }*/
 }
