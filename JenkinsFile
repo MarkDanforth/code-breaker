@@ -7,7 +7,7 @@ node {
     }
     stage('Build image') {
         echo 'Building Image'
-        app = docker.build("clocksondocker.azurecr.io/code-breaker")
+        app = docker.build("clocksondocker.azurecr.io/code-breaker", ".")
         echo 'Image Built'
     }
     stage('Lollygagging') {
