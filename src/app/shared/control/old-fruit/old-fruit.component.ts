@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Round } from  '../../../models/round.model';
 
 @Component({
   selector: 'app-old-fruit',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class OldFruitComponent implements OnInit {
 
-  @Input() fruits: number[];
+  @Input() round: Round;
 
   public glyphs: Array<string>;
   

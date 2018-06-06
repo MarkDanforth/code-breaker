@@ -12,7 +12,7 @@ export class MastermindService {
 
   newGame(): Game {
     let i: number;
-    const nextGame = new Game({ answer: new Round({})});
+    const nextGame = new Game({ answer: new Round({}) });
 
     for (i = 0; i < nextGame.numSlots; i++) {
       nextGame.answer.slots.push(Math.floor((Math.random() * nextGame.maxValues) + 1));
@@ -24,34 +24,37 @@ export class MastermindService {
 
   submitGuess(guess: number[]) {
     if (guess.length == this.game.answer.slots.length) {
-    const round = new Round( {slots: guess} );
+      const round = new Round({ slots: guess });
 
-    const rowStatus = [];
+      const rowStatus = [];
 
-    // check for right number right place
-    round.slots.forEach((element, index) => {
-      if (this.game.answer.slots[index] == element) {
-        round.rnrp += 1;
-        rowStatus[index] = 3;
-      } else {
-        rowStatus[index] = 0;
-      }
-    });
+      // check for right number right place
+      round.slots.forEach((element, index) => {
+        if (this.game.answer.slots[index] == element) {
+          round.hints.push(2);
+          rowStatus[index] = 2;
+        } else {
+          rowStatus[index] = 0;
+        }
+      });
 
-    // check for right number wrong place
-    round.slots.forEach((guessElement, guessIndex) => {
-      if (rowStatus[guessIndex] === 0 || rowStatus[guessIndex] === 2) {
-        this.game.answer.slots.forEach((answerElement, answerIndex) => {
-          if (rowStatus[answerIndex] < 2 && guessElement == answerElement) {
-            round.rnwp += 1;
-            rowStatus[guessIndex] += 1;
-            rowStatus[answerIndex] += 2;
+      this.game.answer.slots.forEach((answerElement, answerIndex) => {
+        if (rowStatus[answerIndex] != 2) {
+          for (let i = 0; i < round.slots.length; i++) {
+            if (rowStatus[i] == 0 && round.slots[i] == answerElement) {
+              round.hints.push(1);
+              rowStatus[i] = 1;
+              break;
+            }
           }
-        });
-      }
-    });
+        }
+      });
 
-    this.game.rounds.push(round);
-  }
+      while (round.hints.length < this.game.answer.slots.length) {
+        round.hints.push(0);
+      }
+
+      this.game.rounds.push(round);
+    }
   }
 }

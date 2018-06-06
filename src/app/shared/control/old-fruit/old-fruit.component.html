@@ -1,3 +1,11 @@
-<div *ngFor="let fruit of fruits" class="picked-fruit fruit">
+<div *ngFor="let fruit of round.slots" class="picked-fruit fruit">
   <i class="fa {{ glyphs[fruit] }}" aria-hidden="true"></i>
+</div>
+
+<div class="hint-box">
+  <div *ngFor="let hint of round.hints" class="hint">
+    <i *ngIf="hint==2" class="fa fa-smile-o rnrp" aria-hidden="true"></i>
+    <i *ngIf="hint==1" class="fa fa-meh-o rnwp" aria-hidden="true"></i>
+    <i *ngIf="hint==0" class="fa fa-frown-o" aria-hidden="true"></i>
+  </div>
 </div>
